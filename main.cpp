@@ -11,12 +11,21 @@ int main() {
 
     cout << "=====================" << endl;
 
-    player->doAttack(enemy);
-    enemy->doAttack(player);
-
-    cout << player->toString() << endl;
-    cout << enemy->toString() << endl;
-
+    while (player->getHealth() > 0 && enemy->getHealth() > 0) {
+        player->doAttack(enemy);
+        if (enemy->getHealth() <= 0) {
+            cout << "Ganaste" << endl;
+            break;
+        }
+        enemy->doAttack(player);
+        if (player->getHealth() <= 0) {
+            cout << "You're old, you're predictable, and you never stood a chance " << endl;
+            break;
+        }
+        cout << player->toString() << endl;
+        cout << enemy->toString() << endl;
+        cout << "=====================" << endl;
+    }
     delete player;
     delete enemy;
     return 0;
